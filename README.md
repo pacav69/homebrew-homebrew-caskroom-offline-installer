@@ -20,7 +20,7 @@ to an external drive directory such as /homebrewfiles/Library/Caches/Homebrew
 or use the copycache.sh script.
 
 ## What it does:
-The script hboffline.sh will change the environment variable of HOMEBREW_CACHE to the current dir and add the path of /Library/Caches/Homebrew
+The script hboffline.sh will change the environment variable of HOMEBREW_CACHE to the current dir, whereever it is run and add the path of /Library/Caches/Homebrew
 Then loading the file list of 'local.apps' it will check and install apps 
 # then it will load the file list of 'local.formulas' and check and install formulas.
 # 
@@ -40,7 +40,8 @@ open a terminal on the external drive in the hboffline directory and run the fol
 
 use ./copycache.sh
 
-this will copy from the /Library/Caches/Homebrew on the computer to the external drive
+this will copy files from the /Library/Caches/Homebrew on the computer to the external drive
+of 'hboffline'
 
 edit the local.apps and the local.formulas for your required install
 
