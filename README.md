@@ -54,6 +54,8 @@ This will allow an offline install of the previously downloaded files.
 use ./bkupbrew.sh to copy files from the /usr/local/Library and Brew file to 
 the external drive.
 
+## Recommend installing
+go2shell
 
 
 
