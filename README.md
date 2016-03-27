@@ -36,14 +36,18 @@ First create a 'hboffline' directory on the external drive then copy the followi
 
 Open a terminal on the external drive in the 'hboffline' directory and run the following:
 
-use ./copycache.sh
+'''sh
+./copycache.sh
 
 This will copy files from the /Library/Caches/Homebrew on the computer to the external drive
 of 'hboffline'
 
 Edit the local.apps and the local.formulas for your required install.
 
-Then run ./hboffline.sh
+Then run
+
+'''sh
+./hboffline.sh
 
 This will allow an offline install of the previously downloaded files.
 
