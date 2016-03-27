@@ -1,0 +1,6 @@
+#!/bin/sh
+# ==============================
+# brew cask install apps
+# ==============================
+brew_cask_install 'atom'
+brew_cask_install 'cloud'

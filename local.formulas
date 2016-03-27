@@ -1,0 +1,5 @@
+#!/bin/sh
+# ==============================
+# brew install formulas
+# ==============================
+brew_install_or_upgrade 'python'

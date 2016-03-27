@@ -1,0 +1,26 @@
+#!/bin/sh
+# pip install or update
+pip_install_or_update BeautifulSoup
+pip_install_or_update cElementTree
+pip_install_or_update ciElementTree
+pip_install_or_update doc2dash
+pip_install_or_update easygui
+pip_install_or_update docutils
+pip_install_or_update EasyTkinter
+pip_install_or_update lxml
+pip_install_or_update mysql-connector-python-cext
+pip_install_or_update Nuitka
+pip_install_or_update passlib
+pip_install_or_update pip
+pip_install_or_update py2app
+pip_install_or_update six
+pip_install_or_update Sphinx
+pip_install_or_update termcolor
+pip_install_or_update tikitiki
+pip_install_or_update tldextract
+pip_install_or_update TreeSoup
+pip_install_or_update vboxapi
+pip_install_or_update wheel
+pip_install_or_update wxPython
+pip_install_or_update wxPython-common
+pip_install_or_update zope.interface

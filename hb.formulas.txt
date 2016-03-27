@@ -1,0 +1,9 @@
+#!/bin/sh
+# ==============================
+# brew install formulas
+# ==============================
+brew_install_or_upgrade 'python'
+brew_install_or_upgrade 'Zsh'
+brew_install_or_upgrade 'Zshdb'
+brew_install_or_upgrade 'Zzz'
+
