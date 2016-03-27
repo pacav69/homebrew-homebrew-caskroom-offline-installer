@@ -10,21 +10,21 @@ Then run ./macinst from the command line to download and install
 ## Offline installation
 If you require an offline installation
 ## Introduction
+
 This is an offline installer application of homebrew cask.
 
 ## Procedure:
+
 First download and install homebrew visit http://brew.sh/
-Then use a Mac that is connected to the internet to download the files that will be used
+Then using a Mac that is connected to the internet to download the files that will be used
 for offline usage. Then copy the downloaded files from the /Library/Caches/Homebrew directory
-to an external drive directory such as /homebrewfiles/Library/Caches/Homebrew
+to an external drive directory such as /hboffline/Library/Caches/Homebrew
 or use the copycache.sh script.
 
 ## What it does:
 The script hboffline.sh will change the environment variable of HOMEBREW_CACHE to the current dir, whereever it is run and add the path of /Library/Caches/Homebrew
 Then loading the file list of 'local.apps' it will check and install apps 
-# then it will load the file list of 'local.formulas' and check and install formulas.
-# 
-# ============================================
+then it will load the file list of 'local.formulas' and check and install formulas.
 
 ## Usage
 first create a 'hboffline' directory on the external drive
@@ -36,7 +36,7 @@ hboffline.sh
 local.apps
 local.formulas
 
-open a terminal on the external drive in the hboffline directory and run the following:
+open a terminal on the external drive in the 'hboffline' directory and run the following:
 
 use ./copycache.sh
 
