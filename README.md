@@ -5,7 +5,9 @@ MAC app downloader and installer using Homebrew and Homebrew cask
 Edit the hb.apps.txt, hb.formulas.txt and hb.pips.txt
 for your required files
 
-Then run ./macinst from the command line to download and install
+Then run from the command line to download and install
+
+./macinst
 
 ## Offline installation
 If you require an offline installation.
@@ -36,7 +38,6 @@ First create a 'hboffline' directory on the external drive then copy the followi
 
 Open a terminal on the external drive in the 'hboffline' directory and run the following:
 
-'''sh
 ./copycache.sh
 
 This will copy files from the /Library/Caches/Homebrew on the computer to the external drive
@@ -46,7 +47,6 @@ Edit the local.apps and the local.formulas for your required install.
 
 Then run
 
-'''sh
 ./hboffline.sh
 
 This will allow an offline install of the previously downloaded files.
@@ -56,8 +56,9 @@ the external drive.
 
 ## Recommend installing
 go2shell 
-http://zipzapmac.com/Go2Shell
-or brew cask install go2shell
+visit http://zipzapmac.com/Go2Shell
+or use 
+brew cask install go2shell
 
 
 
