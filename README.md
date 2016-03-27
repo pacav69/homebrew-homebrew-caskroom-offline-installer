@@ -13,7 +13,7 @@ If you require an offline installation
 This is an offline installer application of homebrew cask.
 
 ## Procedure:
-First download and install homebrew visit homebrew.org
+First download and install homebrew visit http://brew.sh/
 Then use a Mac that is connected to the internet to download the files that will be used
 for offline usage. Then copy the downloaded files from the /Library/Caches/Homebrew directory
 to an external drive directory such as /homebrewfiles/Library/Caches/Homebrew
