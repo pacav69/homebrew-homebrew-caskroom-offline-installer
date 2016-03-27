@@ -55,7 +55,9 @@ use ./bkupbrew.sh to copy files from the /usr/local/Library and Brew file to
 the external drive.
 
 ## Recommend installing
-go2shell
+go2shell 
+http://zipzapmac.com/Go2Shell
+or brew cask install go2shell
 
 
 
