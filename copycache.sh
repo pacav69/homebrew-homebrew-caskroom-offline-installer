@@ -1,12 +1,12 @@
-# this script copies files from the /Library/Caches/Homebrew
-# to the external drive + /Library/Caches/Homebrew
+# @name copycache.sh
+# @version v0.0.2
+# @description this script copies files from the /Library/Caches/Homebrew to the external drive + /Library/Caches/Homebrew
+# @usage run this script from an external drive under a sub directory such as hbcoffline
 
 from_dir="/Library/Caches/Homebrew"
 to_dir="${PWD}/Library/Caches/"
 
-# cp -nvR /Library/Caches/Homebrew/atom-1.6.0.zip ./Library/Caches/Homebrew
 if [ ! -d "$to_dir" ]; then
   mkdir "$to_dir"
 fi
-# cp -nvR ${from_dir}/atom-1.6.0.zip $to_dir
-cp -nvR ${from_dir} $to_dir
+rsync -rvuh ${from_dir} $to_dir --progress --exclude=.DS_Store --stats --safe-links

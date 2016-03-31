@@ -61,8 +61,10 @@ brew_install_or_upgrade() {
       fancy_echo "Already using the latest version of %s. Skipping ..." "$1"
     fi
   else
+  	set +e 
     fancy_echo "Installing %s ..." "$1"
     brew install "$@"
+    set -e
     # todo: add in if failure to get file then try proxy
     # http_proxy=http://<proxyhost>:<proxyport> brew install $FORMULA
   fi
@@ -154,8 +156,8 @@ else
   fancy_echo "Homebrew already installed. Skipping ..."
 fi
 
-# fancy_echo "Updating Homebrew formulas ..."
-# brew update
+fancy_echo "Updating Homebrew formulas ..."
+brew update
 
 # fancy_echo "Verifying the Homebrew installation..."
 # if brew doctor; then
@@ -217,7 +219,7 @@ brew_tap 'caskroom/versions'
 
 # brew_cask_install 'flux'
 # brew_cask_install 'github-desktop'
-# brew_cask_install 'sublime-text3'
+brew_cask_install 'sublime-text3'
 
 # changed to local files for ease of editing
 fancy_echo 'Checking and installing Apps'
