@@ -4,7 +4,7 @@
 # @usage run this script from an external drive under a sub directory such as hbcoffline
 
 from_dir="/Library/Caches/Homebrew"
-to_dir="${PWD}/Library/Caches/"
+to_dir="${PWD}/Library/Caches/Homebrew"
 
 if [ ! -d "$to_dir" ]; then
   mkdir "$to_dir"
