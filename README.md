@@ -1,4 +1,4 @@
-# caskroom-offline-install
+# Caskroom-offline-install
 
 MAC app downloader and installer using Homebrew and Homebrew cask.
 
