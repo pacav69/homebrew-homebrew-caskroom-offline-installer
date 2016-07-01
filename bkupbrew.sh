@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # @name bkupbrew.sh
 # @description this script will backup brew and brew cask files
 # @version v0.0.2

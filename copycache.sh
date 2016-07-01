@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # @name copycache.sh
 # @version v0.0.3
 # @description this script copies files from the $HOME/Library/Caches/Homebrew to the 

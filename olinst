@@ -1,0 +1,314 @@
+#!/usr/bin/env bash
+# @Appname: olinst Offline install
+# @version: 0.0.3
+# @Description: this script will install homebrew and homebrew-cask files
+# from a list stored in a hblist.csv and hbclist.csv
+# @Usage:
+# in the hbclist.csv if the second value is null then the appname will install
+# to ~/Applications directory, otherwise if the second value is "A" then the app will
+# install to /Applications directory
+appversion="0.0.4"
+# ===========================
+# fancy echo
+# ===========================
+fancy_echo() {
+  local fmt="$1"; shift
+
+  # shellcheck disable=SC2059
+  printf "\n$fmt\n" "$@"
+}
+
+# ===========================
+# usage
+# ===========================
+usage() {
+  echo "
+    usage: ${0} [options] <file_name>
+
+    options:
+      -c <file_name>                  Cask Filename list to use for install.
+      -b <file_name>                  Brew Filename list to use for install.
+      -uc <file_name>                 Update Cask Filename list to use.
+      -h, --help                      Show this help.
+      If no filename is given then app will use the default files hblist.csv and hbclist.csv
+  " | sed -E 's/^ {4}//'
+  exit 1
+  # return -1
+}
+
+
+#brew_install_or_upgrade() {
+#  if brew_is_installed "$1"; then
+#    if brew_is_upgradable "$1"; then
+#      fancy_echo "Upgrading %s ..." "$1"
+#      brew upgrade "$@"
+#    else
+#      fancy_echo "Already using the latest version of %s. Skipping ..." "$1"
+#    fi
+#  else
+#    fancy_echo "Installing %s ..." "$1"
+#    brew install "$@"
+#    # todo: add in if failure to get file then try proxy
+#    # http_proxy=http://<proxyhost>:<proxyport> brew install $FORMULA
+#  fi
+#}
+#
+#brew_is_installed() {
+#  brew list -1 | grep -Fqx "$1"
+#}
+#
+#brew_is_upgradable() {
+#  ! brew outdated --quiet "$1" >/dev/null
+#}
+
+# check if hblist.csv and hbclist.csv exist
+# if files not found inform the user
+
+# check to see if brew and brew-cask is installed if not install it
+# or run a local version from external hard drive.
+# when brew update is run from the external drive copy files from the computer
+# load the file
+
+# check if install file exists
+# create file list of install files not found for later download
+
+# install the brew  cask file
+# add args for installing from a prefs list
+# have a menu to select prefs files
+
+# for example a common list of apps
+# such as google-chrome, and some other useful apps for a new install
+# call it newinstall.csv
+# from the command line it would be olinst newinstall.csv
+# then run cppi to install plug-ins and preferences
+
+# ===========================
+# does_casklist_file_exist
+# ===========================
+function does_casklist_file_exist() {
+fancy_echo "Checking for ${inputfile}"
+    if [ -f "$inputfile" ]; then
+        fancy_echo "$inputfile file found"
+        # inputfile="hblist.csv"
+        install_cask_file
+        return
+      else
+        fancy_echo "$inputfile file not found gracefully closing"
+        return -1
+    fi
+}
+
+# ===========================
+# does_brewlist_file_exist
+# ===========================
+function does_brewlist_file_exist() {
+fancy_echo "Checking for ${inputfile}"
+    if [ -f "$inputfile" ]; then
+        fancy_echo "$inputfile file found"
+        # inputfile="hblist.csv"
+        install_brew_file
+        return
+      else
+        fancy_echo "$inputfile file not found gracefully closing"
+        return -1
+    fi
+}
+
+# ===========================
+# does_ucbrewlist_file_exist
+# ===========================
+function does_ucbrewlist_file_exist() {
+fancy_echo "Checking for ${inputfile}"
+    if [ -f "$inputfile" ]; then
+        fancy_echo "$inputfile file found"
+        # inputfile="hblist.csv"
+        # fancy_echo "Updating brew cask files"
+        # brew update
+        update_cask_file
+        return -1
+      else
+        fancy_echo "$inputfile file not found gracefully closing"
+        return -1
+    fi
+}
+
+# ===========================
+# install the brew cask file
+# ===========================
+
+function install_cask_file() {
+    caskappdir="--appdir=/Applications"
+    SaveIFS=$IFS
+    IFS=","
+    # if the value of stdApp is null then install to "~/Applications" directory
+    # if the value of stdApp is not null then install to "/Applications" directory
+    while read appName stdApp; do
+        # echo "the first value is", ${appName}
+        # fancy_echo "Checking if Application  \"${appName}\" is installed..."
+        if brew cask list -1 | grep -Fqx ${appName}; then
+            fancy_echo "${appName} is installed, skipping..."
+        else
+            # todo: if file does not exist then add to wishlist.txt for later download
+            # when connected to internet
+            #
+            # if stdApp is null then install to ~/Applications directory
+            # else install app to /Applications directory
+            if [ -z $stdApp ]; then
+                fancy_echo "Installing ${appName} ..."
+                brew cask install ${appName}
+            else
+                fancy_echo "Installing ${appName} to Applications ..."
+                brew cask install ${appName} ${caskappdir}
+            fi
+       fi
+    done < "$inputfile"
+    IFS=$SaveIFS
+
+}
+
+# ===========================
+# update the brew cask app
+# ===========================
+
+function update_cask_file() {
+    SaveIFS=$IFS
+    IFS=","
+    # if the value of version is null then update
+    # if the value of version is latest then uninstall and install
+    while read appName version; do
+        current="$(brew cask info $appName | sed -n '1p' | sed -n 's/^.*: \(.*\)$/\1/p')"
+
+        # if version is not equal to latest then upgrade to version
+        # else uninstall and re-install app
+        if [ "$version" = "latest" ]; then
+            fancy_echo "Upgrading ${appName} to $version"
+            fancy_echo "Uninstalling old app"
+            brew cask uninstall ${appName}  --force
+            fancy_echo "installing latest app"
+            brew cask install ${appName}  --force
+         else
+            # Upgrading appName to current.
+            fancy_echo "Upgrading ${appName} to v$current."
+            brew cask install ${appName} --force
+        fi
+    done < "$inputfile"
+    IFS=$SaveIFS
+
+}
+
+# ===========================
+# install the brew file
+# ===========================
+
+function install_brew_file() {
+    SaveIFS=$IFS
+    IFS=","
+    while read appName; do
+    # echo "the first value is", ${appName}
+    # fancy_echo "Checking if Application  \"${appName}\" is installed..."
+    if brew list -1 | grep -Fqx ${appName}; then
+        fancy_echo "${appName} is installed, skipping..."
+    else
+    # todo: if file does not exist then add to wishlist.txt for later download
+    # when connected to internet
+        fancy_echo "Installing ${appName} ..."
+        brew install ${appName}
+    fi
+
+    done < "$inputfile"
+    IFS=$SaveIFS
+
+}
+
+# ===========================
+# use default files if none supplied
+# ===========================
+
+function use_default_files() {
+   fancy_echo 'Checking for Homebrew Apps fileslist'
+    if [ -f "hblist.csv" ]; then
+        fancy_echo "hblist.csv file found"
+        inputfile="hblist.csv"
+        install_brew_file
+      else
+        fancy_echo "hblist.csv file not found"
+    fi
+    fancy_echo 'Checking for Homebrew Cask Apps fileslist'
+    if [ -f "hbclist.csv" ]; then
+        fancy_echo "hbclist.csv file found"
+        inputfile="hbclist.csv"
+        install_cask_file
+      else
+        fancy_echo "hbclist.csv file not found"
+    fi
+}
+
+function usedefaultfiles() {
+if [  "${1}" ]; then
+
+fancy_echo "NOT using default files"
+
+else
+
+# fancy_echo " file not found on command line using default files\n use olinst -h for help"
+#
+   use_default_files
+
+fi
+}
+# set -x
+
+# ===========================
+# available flags
+# check for file from command line
+# ===========================
+while [[ "${1}" ]]; do
+  case "${1}" in
+    -h | --help)
+      usage
+      exit 0
+      ;;
+    -c | --cfile)
+     inputfile="${2}"
+      does_casklist_file_exist
+      shift
+      ;;
+    -b | --bfile)
+      inputfile="${2}"
+      does_brewlist_file_exist
+      shift
+      ;;
+      -uc | --ucfile)
+      inputfile="${2}"
+      does_ucbrewlist_file_exist
+      shift
+      ;;
+      -v | --version)
+      echo "${0} version $appversion"
+      # shift
+      break
+      ;;
+    -*)
+      fancy_echo "unrecognized option: ${1}"
+     break
+      ;;
+    *)
+        echo "using other files"
+        usedefaultfiles
+        shift
+    #   break
+      ;;
+  esac
+  shift
+done
+
+if [[ $# -eq 0 ]]; then
+        # usage
+        usedefaultfiles
+fi
+
+# ===========================
+# Completed
+# ===========================
+fancy_echo "All tasks completed"
+

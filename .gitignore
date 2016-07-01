@@ -1,0 +1,17 @@
+.idea/*
+appSupportDir/Sublime Text 3/.*
+appSupportDir/Sublime Text 3/Installed Packages/0_package_control_loader.sublime-package
+
+appSupportDir/Sublime Text 3/Installed Packages/Edit Command Palette.sublime-package
+
+appSupportDir/Sublime Text 3/Installed Packages/Package Control.sublime-package
+
+appSupportDir/Sublime Text 3/Installed Packages/Ruby Completions.sublime-package
+
+appSupportDir/Sublime Text 3/Installed Packages/SideBarEnhancements.sublime-package
+
+appSupportDir/Sublime Text 3/Packages/0_package_control_loader/00-package_control.py
+
+appSupportDir/Sublime Text 3/Packages/0_package_control_loader/00-package_control.pyc
+
+appSupportDir/Sublime Text 3/Packages/*
