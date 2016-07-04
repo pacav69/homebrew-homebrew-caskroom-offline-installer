@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 # @Appname: olinst Offline install
-# @version: 0.0.3
+# @version: 0.0.5
 # @Description: this script will install homebrew and homebrew-cask files
 # from a list stored in a hblist.csv and hbclist.csv
 # @Usage:
 # in the hbclist.csv if the second value is null then the appname will install
 # to ~/Applications directory, otherwise if the second value is "A" then the app will
 # install to /Applications directory
-appversion="0.0.4"
+appversion="0.0.5"
 # ===========================
 # fancy echo
 # ===========================
@@ -35,7 +35,10 @@ usage() {
   exit 1
   # return -1
 }
-
+fancy_echo "Changing HOMEBREW_CACHE to current location"
+export HOMEBREW_CACHE="${PWD}/Library/Caches/Homebrew"
+fancy_echo "Using local Brew file"
+export HOMEBREW_BREW_FILE="${PWD}/Homebrew/bin/brew"
 
 #brew_install_or_upgrade() {
 #  if brew_is_installed "$1"; then
@@ -302,10 +305,15 @@ while [[ "${1}" ]]; do
   shift
 done
 
-if [[ $# -eq 0 ]]; then
-        # usage
-        usedefaultfiles
-fi
+# if [[ $# -eq 0 ]]; then
+#         # usage
+#         usedefaultfiles
+# fi
+
+fancy_echo 'Changing HOMEBREW_CACHE to default location'
+export HOMEBREW_CACHE='$HOME/Library/Caches/Homebrew'
+fancy_echo 'Changing to default Brew file'
+export HOMEBREW_BREW_FILE='/usr/local/bin/brew'
 
 # ===========================
 # Completed
