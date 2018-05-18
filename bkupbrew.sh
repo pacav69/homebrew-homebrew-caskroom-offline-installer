@@ -7,7 +7,7 @@
 
 # /usr/local/Library files
 
-from_dir="/usr/local/Library"
+from_dir="/usr/local/Homebrew/Library"
 to_dir="${PWD}/usr/local/"
 
 
