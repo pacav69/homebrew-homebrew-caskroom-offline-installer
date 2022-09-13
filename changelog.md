@@ -1,4 +1,13 @@
 # Changelog
+
+## homebrew-homebrew-caskroom-offline-installer
+@version: 0.0.6
+* added in the following:
+
+	LICENSE
+	Contributing.md
+	placed files in src directory
+	
 ## @Appname: olinst - OffLine install
 
 @version: 0.0.5
