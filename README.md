@@ -3,6 +3,10 @@
 <a href="https://www.buymeacoffee.com/cavtronics" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
  <a href="https://www.buymeacoffee.com/cavtronics" title="Donate to my libraries using BuyMeACoffee"><img src="https://img.shields.io/badge/buy%20me%20a%20coffee-donate-orange.svg?logo=buy-me-a-coffee&logoColor=FFDD00" style="height: 20px !important;width: 200px !important;" ></a>
 
+![GitHub](https://img.shields.io/github/license/pacav69/homebrew-homebrew-caskroom-offline-installer?style=flat-square)
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](#Contributing)
+![GitHub issues](https://img.shields.io/github/issues/pacav69/homebrew-homebrew-caskroom-offline-installer)![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/pacav69/homebrew-homebrew-caskroom-offline-installer?display_name=release&include_prereleases)
+
 # Brew and Brew Cask OffLine installer
 
 # Purpose
